@@ -1,19 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { ShoppingCart, User, Leaf } from "lucide-react";
+import { ShoppingCart, User, Leaf, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
+    // Check login state
+    const user = localStorage.getItem("aquagrow_user");
+    if (user) setIsLoggedIn(true);
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("aquagrow_user");
+    setIsLoggedIn(false);
+    toast.success("Logged out successfully");
+    router.push("/");
+  };
 
   return (
     <nav
@@ -43,10 +58,24 @@ export default function Navbar() {
             <ShoppingCart className="w-6 h-6" />
             <span className="absolute top-0 right-0 bg-accent text-dark text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
           </Link>
-          <Link href="/login" className="flex items-center gap-2 bg-primary px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition-all shadow-lg shadow-primary/20">
-            <User className="w-5 h-5" />
-            <span>Login</span>
-          </Link>
+          
+          {isLoggedIn ? (
+            <div className="flex items-center gap-3">
+              <div className="hidden sm:block text-sm font-bold text-accent">Usman Ifty</div>
+              <button 
+                onClick={handleLogout}
+                className="p-2 hover:bg-red-500/10 text-red-400 rounded-full transition-colors"
+                title="Logout"
+              >
+                <LogOut className="w-6 h-6" />
+              </button>
+            </div>
+          ) : (
+            <Link href="/login" className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition-all shadow-lg shadow-primary/20">
+              <User className="w-5 h-5" />
+              <span>Login</span>
+            </Link>
+          )}
         </div>
       </div>
     </nav>

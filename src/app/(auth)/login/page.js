@@ -18,8 +18,11 @@ export default function LoginPage() {
     // Simulate API call
     setTimeout(() => {
       setLoading(false);
-      toast.success("Welcome back to AquaGrow!");
+      localStorage.setItem("aquagrow_user", JSON.stringify({ name: "Usman Ifty", email: "usman@example.com" }));
+      toast.success("Welcome back, Usman Ifty!");
       router.push("/");
+      // Force refresh to update navbar
+      window.location.reload();
     }, 1500);
   };
 

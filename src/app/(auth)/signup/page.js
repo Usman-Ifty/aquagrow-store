@@ -17,8 +17,10 @@ export default function SignupPage() {
 
     setTimeout(() => {
       setLoading(false);
-      toast.success("Account created successfully!");
-      router.push("/login");
+      localStorage.setItem("aquagrow_user", JSON.stringify({ name: "Usman Ifty", email: "usman@example.com" }));
+      toast.success("Account created! Welcome, Usman.");
+      router.push("/");
+      window.location.reload();
     }, 1500);
   };
 
