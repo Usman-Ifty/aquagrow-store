@@ -11,10 +11,13 @@ export const metadata = {
   description: "Automated care for your plants. Premium smart irrigation solutions for modern life.",
 };
 
+import { Toaster } from "react-hot-toast";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${outfit.variable} dark`}>
       <body className="min-h-screen flex flex-col antialiased">
+        <Toaster position="top-right" />
         {children}
       </body>
     </html>
