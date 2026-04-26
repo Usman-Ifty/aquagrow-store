@@ -6,6 +6,7 @@ import { CheckCircle2, Package, ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useCart } from "@/context/CartContext";
+import { motion } from "framer-motion";
 
 export default function SuccessPage() {
   const { clearCart } = useCart();
