@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ShoppingCart, User, Leaf, LogOut } from "lucide-react";
+import { ShoppingCart, User, Leaf, LogOut, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -56,6 +56,9 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
+          <Link href="/wishlist" className="p-2 hover:bg-white/10 rounded-full transition-colors text-red-400">
+            <Heart className="w-6 h-6" />
+          </Link>
           <Link href="/cart" className="p-2 hover:bg-white/10 rounded-full transition-colors relative">
             <ShoppingCart className="w-6 h-6" />
             {cartCount > 0 && (
