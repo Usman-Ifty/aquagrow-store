@@ -12,13 +12,16 @@ export const metadata = {
 };
 
 import { Toaster } from "react-hot-toast";
+import { CartProvider } from "@/context/CartContext";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${outfit.variable} dark`}>
       <body className="min-h-screen flex flex-col antialiased">
-        <Toaster position="top-right" />
-        {children}
+        <CartProvider>
+          <Toaster position="top-right" />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

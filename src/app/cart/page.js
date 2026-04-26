@@ -4,35 +4,16 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Trash2, Plus, Minus, ArrowRight, ShoppingBag, CreditCard } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
+import { useCart } from "@/context/CartContext";
+import Image from "next/image";
 
 export default function CartPage() {
-  const [items, setItems] = useState([
-    {
-      id: "pro",
-      name: "AquaGrow Pro",
-      price: 3500,
-      quantity: 1,
-      emoji: "🌿"
-    }
-  ]);
+  const { cart, removeFromCart, updateQuantity, cartTotal } = useCart();
 
-  const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const shipping = 250;
-  const total = subtotal + shipping;
-
-  const updateQty = (id, delta) => {
-    setItems(items.map(item => 
-      item.id === id ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item
-    ));
-  };
-
-  const removeItem = (id) => {
-    setItems(items.filter(item => item.id !== id));
-    toast.error("Item removed from cart");
-  };
+  const shipping = cart.length > 0 ? 250 : 0;
+  const total = cartTotal + shipping;
 
   return (
     <main className="flex-1">
@@ -43,15 +24,15 @@ export default function CartPage() {
           <h1 className="text-4xl font-black flex items-center gap-4">
             <ShoppingBag className="text-primary" size={36} /> Your Shopping Cart
           </h1>
-          <div className="text-muted-foreground font-medium">{items.length} {items.length === 1 ? 'Item' : 'Items'}</div>
+          <div className="text-muted-foreground font-medium">{cart.length} {cart.length === 1 ? 'Item' : 'Items'}</div>
         </div>
 
-        {items.length > 0 ? (
+        {cart.length > 0 ? (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Cart Items */}
             <div className="lg:col-span-2 space-y-6">
               <AnimatePresence>
-                {items.map((item) => (
+                {cart.map((item) => (
                   <motion.div 
                     key={item.id}
                     initial={{ opacity: 0, y: 10 }}
@@ -59,8 +40,8 @@ export default function CartPage() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     className="glass p-6 rounded-[2rem] border border-white/5 flex flex-col sm:flex-row items-center gap-6 shadow-xl"
                   >
-                    <div className="w-24 h-24 rounded-2xl bg-card flex items-center justify-center text-4xl shadow-inner shrink-0">
-                      {item.emoji}
+                    <div className="w-24 h-24 rounded-2xl bg-card relative overflow-hidden shadow-inner shrink-0">
+                      <Image src={item.image} alt={item.name} fill className="object-cover" />
                     </div>
                     
                     <div className="flex-1 text-center sm:text-left">
@@ -70,7 +51,7 @@ export default function CartPage() {
 
                     <div className="flex items-center gap-4 bg-white/5 rounded-xl p-2 border border-white/5">
                       <button 
-                        onClick={() => updateQty(item.id, -1)}
+                        onClick={() => updateQuantity(item.id, -1)}
                         className="p-1 hover:text-primary transition-colors disabled:opacity-20"
                         disabled={item.quantity <= 1}
                       >
@@ -78,7 +59,7 @@ export default function CartPage() {
                       </button>
                       <span className="font-bold w-6 text-center">{item.quantity}</span>
                       <button 
-                        onClick={() => updateQty(item.id, 1)}
+                        onClick={() => updateQuantity(item.id, 1)}
                         className="p-1 hover:text-primary transition-colors"
                       >
                         <Plus size={18} />
@@ -90,7 +71,7 @@ export default function CartPage() {
                     </div>
 
                     <button 
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeFromCart(item.id)}
                       className="text-muted-foreground hover:text-red-500 transition-colors p-3 hover:bg-red-500/10 rounded-xl"
                     >
                       <Trash2 size={20} />
@@ -112,15 +93,11 @@ export default function CartPage() {
                 <div className="space-y-4 text-muted-foreground">
                   <div className="flex justify-between">
                     <span>Subtotal</span>
-                    <span className="text-foreground font-bold">PKR {subtotal.toLocaleString()}</span>
+                    <span className="text-foreground font-bold">PKR {cartTotal.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Shipping Fee</span>
                     <span className="text-foreground font-bold">PKR {shipping.toLocaleString()}</span>
-                  </div>
-                  <div className="flex justify-between text-xs text-accent font-black uppercase tracking-widest pt-2 bg-accent/5 p-3 rounded-xl border border-accent/10">
-                    <span>Discount (Student Promo)</span>
-                    <span>- PKR 0</span>
                   </div>
                 </div>
 

@@ -5,7 +5,10 @@ import Link from "next/link";
 import { ShoppingCart, Star } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { useCart } from "@/context/CartContext";
+
 export default function ProductCard({ product }) {
+  const { addToCart } = useCart();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -44,7 +47,10 @@ export default function ProductCard({ product }) {
           <div>
             <span className="text-2xl font-bold text-primary">PKR {product.price.toLocaleString()}</span>
           </div>
-          <button className="bg-primary text-white p-3 rounded-xl hover:opacity-90 transition-all shadow-lg shadow-primary/20">
+          <button 
+            onClick={() => addToCart(product)}
+            className="bg-primary text-white p-3 rounded-xl hover:opacity-90 transition-all shadow-lg shadow-primary/20 active:scale-95"
+          >
             <ShoppingCart size={20} />
           </button>
         </div>

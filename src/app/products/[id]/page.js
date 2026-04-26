@@ -8,10 +8,17 @@ import { ShoppingCart, Star, Check, ArrowLeft, Info, Cpu, Droplet, Shield } from
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
+import { useCart } from "@/context/CartContext";
+import toast from "react-hot-toast";
 
 export default function ProductDetails() {
   const { id } = useParams();
+  const { addToCart } = useCart();
   const product = products.find(p => p.id === id);
+
+  const handleWishlist = () => {
+    toast.success(`${product.name} added to your wishlist!`);
+  };
 
   if (!product) return <div className="min-h-screen flex items-center justify-center text-2xl font-bold">Product not found</div>;
 
@@ -92,10 +99,16 @@ export default function ProductDetails() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="flex-1 bg-primary text-white py-5 rounded-2xl font-black text-xl hover:opacity-90 transition-all shadow-2xl shadow-primary/30 flex items-center justify-center gap-3">
+              <button 
+                onClick={() => addToCart(product)}
+                className="flex-1 bg-primary text-white py-5 rounded-2xl font-black text-xl hover:opacity-90 transition-all shadow-2xl shadow-primary/30 flex items-center justify-center gap-3 active:scale-95"
+              >
                 <ShoppingCart size={24} /> Add to Cart
               </button>
-              <button className="glass px-8 py-5 rounded-2xl font-bold hover:bg-white/10 transition-all">
+              <button 
+                onClick={handleWishlist}
+                className="glass px-8 py-5 rounded-2xl font-bold hover:bg-white/10 transition-all active:scale-95"
+              >
                 Add to Wishlist
               </button>
             </div>

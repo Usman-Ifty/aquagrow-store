@@ -5,8 +5,10 @@ import { ShoppingCart, User, Leaf, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
+  const { cartCount } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
@@ -56,7 +58,11 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <Link href="/cart" className="p-2 hover:bg-white/10 rounded-full transition-colors relative">
             <ShoppingCart className="w-6 h-6" />
-            <span className="absolute top-0 right-0 bg-accent text-dark text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+            {cartCount > 0 && (
+              <span className="absolute top-0 right-0 bg-accent text-dark text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-bounce">
+                {cartCount}
+              </span>
+            )}
           </Link>
           
           {isLoggedIn ? (
