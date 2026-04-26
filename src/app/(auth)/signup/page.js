@@ -14,13 +14,11 @@ export default function SignupPage() {
   const handleSignup = (e) => {
     e.preventDefault();
     setLoading(true);
-
     setTimeout(() => {
       setLoading(false);
       localStorage.setItem("aquagrow_user", JSON.stringify({ name: "Usman Ifty", email: "usman@example.com" }));
       toast.success("Account created! Welcome, Usman.");
-      router.push("/");
-      window.location.reload();
+      window.location.href = "/";
     }, 1500);
   };
 

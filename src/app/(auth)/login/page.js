@@ -20,9 +20,7 @@ export default function LoginPage() {
       setLoading(false);
       localStorage.setItem("aquagrow_user", JSON.stringify({ name: "Usman Ifty", email: "usman@example.com" }));
       toast.success("Welcome back, Usman Ifty!");
-      router.push("/");
-      // Force refresh to update navbar
-      window.location.reload();
+      window.location.href = "/";
     }, 1500);
   };
 
