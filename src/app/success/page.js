@@ -4,9 +4,15 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CheckCircle2, Package, ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useCart } from "@/context/CartContext";
 
 export default function SuccessPage() {
+  const { clearCart } = useCart();
+
+  useEffect(() => {
+    clearCart();
+  }, []);
   return (
     <main className="flex-1">
       <Navbar />

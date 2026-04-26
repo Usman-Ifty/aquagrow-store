@@ -46,7 +46,7 @@ export default function LoginPage() {
               <input 
                 required
                 type="email" 
-                placeholder="muhammad@fast.pk"
+                placeholder="usman@gmail.com"
                 className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
               />
             </div>

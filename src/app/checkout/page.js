@@ -47,7 +47,11 @@ export default function CheckoutPage() {
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-2 col-span-2">
                   <label className="text-sm font-semibold ml-1">Full Name</label>
-                  <input required type="text" placeholder="Muhammad Ahmad" className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 focus:border-primary outline-none transition-all" />
+                  <input required type="text" placeholder="Usman" className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 focus:border-primary outline-none transition-all" />
+                </div>
+                <div className="space-y-2 col-span-2">
+                  <label className="text-sm font-semibold ml-1">Phone Number</label>
+                  <input required type="text" placeholder="03349660651" className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 focus:border-primary outline-none transition-all" />
                 </div>
                 <div className="space-y-2 col-span-2">
                   <label className="text-sm font-semibold ml-1">Street Address</label>

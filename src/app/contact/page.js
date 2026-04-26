@@ -70,11 +70,11 @@ export default function ContactPage() {
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold ml-1">Your Name</label>
-                  <input required type="text" placeholder="Full Name" className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 focus:border-primary outline-none transition-all" />
+                  <input required type="text" placeholder="Usman" className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 focus:border-primary outline-none transition-all" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold ml-1">Email Address</label>
-                  <input required type="email" placeholder="email@example.com" className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 focus:border-primary outline-none transition-all" />
+                  <input required type="email" placeholder="usman@gmail.com" className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 focus:border-primary outline-none transition-all" />
                 </div>
               </div>
               <div className="space-y-2">
