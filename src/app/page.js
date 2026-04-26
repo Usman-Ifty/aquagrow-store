@@ -4,38 +4,9 @@ import ProductCard from "@/components/ProductCard";
 import { ArrowRight, CheckCircle, ShieldCheck, Zap, Droplets } from "lucide-react";
 import Link from "next/link";
 
-const featuredProducts = [
-  {
-    id: "basic",
-    name: "AquaGrow Basic",
-    price: 1800,
-    description: "Arduino-powered timer based irrigation. Ideal for students.",
-    emoji: "🌱",
-    rating: 4,
-    reviews: 124,
-    isFeatured: false
-  },
-  {
-    id: "pro",
-    name: "AquaGrow Pro",
-    price: 3500,
-    description: "Hybrid system with RTC module and soil moisture sensors.",
-    emoji: "🌿",
-    rating: 5,
-    reviews: 89,
-    isFeatured: true
-  },
-  {
-    id: "smart",
-    name: "AquaGrow Smart",
-    price: 6500,
-    description: "WiFi enabled with mobile app integration (Pre-order).",
-    emoji: "🚀",
-    rating: 5,
-    reviews: 42,
-    isFeatured: false
-  }
-];
+import { products as allProducts } from "@/data/products";
+
+const featuredProducts = allProducts.filter(p => p.id === "pro" || p.id === "basic" || p.id === "smart");
 
 export default function Home() {
   return (
