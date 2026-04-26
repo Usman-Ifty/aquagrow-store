@@ -3,6 +3,7 @@
 import { products } from "@/data/products";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Image from "next/image";
 import { ShoppingCart, Star, Check, ArrowLeft, Info, Cpu, Droplet, Shield } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -28,10 +29,15 @@ export default function ProductDetails() {
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            className="relative aspect-square rounded-3xl bg-card border border-border overflow-hidden flex items-center justify-center text-[12rem] md:text-[18rem] shadow-2xl"
+            className="relative aspect-square rounded-[2.5rem] bg-card border border-border overflow-hidden shadow-2xl group"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5"></div>
-            <div className="relative z-10 drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)]">{product.emoji}</div>
+            <Image 
+              src={product.image} 
+              alt={product.name} 
+              fill 
+              className="object-cover group-hover:scale-105 transition-transform duration-1000" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/10 opacity-60"></div>
           </motion.div>
 
           {/* Product Info */}

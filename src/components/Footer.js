@@ -45,7 +45,7 @@ export default function Footer() {
             <ul className="space-y-4 text-muted-foreground">
               <li className="flex items-start gap-3">
                 <MapPin className="text-primary mt-1 shrink-0" size={18} />
-                <span>FAST-NUCES, Lahore, Pakistan</span>
+                <span>FAST-NUCES, Faisalabad, Pakistan</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="text-primary shrink-0" size={18} />
@@ -53,14 +53,14 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="text-primary shrink-0" size={18} />
-                <span>hello@aquagrow.pk</span>
+                <span>aquagrowpk@gmail.com</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border text-center text-muted-foreground text-sm">
-          <p>© {new Date().getFullYear()} AquaGrow Smart Irrigation Systems. All rights reserved.</p>
+        <div className="pt-8 border-t border-border text-center text-muted-foreground text-sm flex flex-col md:flex-row items-center justify-center gap-4">
+          <p>© {new Date().getFullYear()} AquaGrow Smart Irrigation Systems. Designed by Usman Ifty.</p>
         </div>
       </div>
     </footer>

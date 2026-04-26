@@ -14,9 +14,12 @@ export default function ProductCard({ product }) {
       className="group bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all shadow-lg hover:shadow-primary/10"
     >
       <Link href={`/products/${product.id}`} className="block relative aspect-square overflow-hidden bg-muted">
-        <div className="absolute inset-0 flex items-center justify-center text-8xl group-hover:scale-110 transition-transform duration-500">
-          {product.emoji}
-        </div>
+        <Image 
+          src={product.image} 
+          alt={product.name}
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-700"
+        />
         {product.isFeatured && (
           <div className="absolute top-4 left-4 bg-accent text-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
             Most Popular
